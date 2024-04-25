@@ -33,7 +33,7 @@ FROM test_sabri.covid_deaths
 GROUP BY location, population
 ORDER BY percent_population_infected DESC;
 
--- Showing Contries with Highest Death Count
+-- Showing Countries with Highest Death Count
 
 SELECT location, MAX(total_deaths) as total_death_count
 FROM test_sabri.covid_deaths
@@ -51,20 +51,23 @@ WHERE continent is not null
 GROUP BY continent
 ORDER BY total_death_count DESC;
 
--- esta es la mas correcta
+-- this one is more correct
 SELECT location, MAX(total_deaths) as total_death_count
 FROM test_sabri.covid_deaths
 WHERE continent is null
+and location not in ('World', 'European Union', 'International', 'High income', 'Upper middle income', 'Lower middle income', 'Low income')
 GROUP BY location
 ORDER BY total_death_count DESC;
 
+--Understanding continent vs location data
 	SELECT *
 FROM test_sabri.covid_deaths
-	where location in ('Asia','Europe');
+where covid_deaths.location in ('Asia');
+	--where location in ('Asia','Europe');
 
 --Showing continents with the highest infection rate
 
-SELECT location, population, MAX(total_cases) as highest_infection_counT, MAX((total_cases/population)*100) as percent_population_infected
+SELECT location, population, MAX(total_cases) as highest_infection_count, MAX((total_cases/population)*100) as percent_population_infected
 FROM test_sabri.covid_deaths
 WHERE continent is null
 GROUP BY location, population
@@ -80,11 +83,12 @@ WHERE continent is NOT null	and new_cases != 0
 GROUP BY date
 ORDER BY date, SUM(new_cases);
 
+-- Can use this for tableau
 
 SELECT SUM(new_cases) as total_cases, SUM(new_deaths) as total_deaths, SUM(new_deaths)/SUM(new_cases)*100 as death_percentage
 FROM test_sabri.covid_deaths
 --WHERE location = 'United States'
-WHERE continent is NOT null	and new_cases != 0;
+WHERE continent is NOT null;	--and new_cases != 0;
 
 --Other data set
 
@@ -118,7 +122,7 @@ SELECT *, (rolling_people_vaccinated/population)*100
 FROM PopvsVac;
 
 
---Temp table -- REVISAR
+--Temp table --
 
 Drop table if exists Percent_population_vaccinated ;
 
@@ -144,6 +148,3 @@ order by dea.location, dea.date ;
 
 SELECT *, (rolling_people_vaccinated/population)*100
 FROM Percent_population_vaccinated;
-
-
---Creating View
