@@ -1,0 +1,4 @@
+# COVID-19 DATA #
+In this data analytics project, a comprehensive analysis of COVID-19 data was conducted to extract critical insights on the pandemic's impact globally, across continents, and at the country level. The project involved calculating the percentage of the population that contracted COVID-19 in each country and continent. Additionally, the total death count and total case count were analyzed globally, with the mortality rate computed as a percentage. The relationship between total population and vaccination rates was also explored, determining the percentage of vaccinated individuals per country. This analysis provided a detailed overview of the pandemic's reach and severity, alongside the response effectiveness in terms of vaccinations. 
+
+Tableau was used to create visialisations showing some of the results found during the analysis. https://public.tableau.com/app/profile/sabrina.vazquez/viz/CovidDashboard_17140738583400/Dashboard1
